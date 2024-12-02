@@ -6,6 +6,15 @@ __pycache__/
 # C extensions
 *.so
 
+# ignore dirs
+data
+.history
+original_dataset
+other
+
+#TODO: remove plots folder
+plots
+
 # Distribution / packaging
 .Python
 build/
