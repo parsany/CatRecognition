@@ -25,7 +25,7 @@ This repository contains code for training a CNN model on a dataset of images of
 1. Clone the repository to your local machine:
 
     ```bash
-    git clone https://github.com/vvsparsa/cat-emotion-classifier.git
+    git clone https://github.com/parsany/CatRecognition.git
     cd cat-emotion-classifier
     ```
 
