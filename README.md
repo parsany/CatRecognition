@@ -8,12 +8,8 @@ Training a convolutional neural network using residual layers and Adam optimizer
 
 
 ## Table of Contents
-- [Cat Emotion Classifier](#cat-emotion-classifier)
-  - [Table of Contents](#table-of-contents)
-  - [Project Overview](#project-overview)
   - [Running](#running)
   - [Dataset](#dataset)
-  - [Training](#training)
   - [Evaluation](#evaluation)
 
 ## Project Overview
