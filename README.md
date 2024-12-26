@@ -6,12 +6,6 @@
 
 Training a convolutional neural network using residual layers and Adam optimizer to classify images of cats into different emotion categories.
 
-
-## Table of Contents
-  - [Running](#running)
-  - [Dataset](#dataset)
-  - [Evaluation](#evaluation)
-
 ## Project Overview
 
 This repository contains code for training a CNN model on a dataset of images of cats, classifying them into various emotional states. The model is trained using the `torchvision` and `torch` libraries, with data augmentation applied during training. After training, the model’s performance is evaluated using a confusion matrix and various performance metrics (loss, accuracy).
