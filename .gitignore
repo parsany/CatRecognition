@@ -175,3 +175,6 @@ data
 d_test
 Cat-Emotions-1
 ignored
+convnext_large-ea097f82.pth
+best_cnn.pth
+resnet50-11ad3fa6.pth

@@ -1,44 +1,56 @@
 
 # Cat Emotion Classifier
 
+This project trains a deep learning model to classify cat emotions from images. The final model uses a **ConvNeXt-Large** architecture and incorporates modern training techniques to achieve high accuracy.
+
 ![plot image](./assets/plot.png)
 
+## Project Evolution
 
-Training a convolutional neural network using residual layers and Adam optimizer to classify images of cats into different emotion categories.
+The project started with a custom CNN with residual connections, which yielded a validation accuracy of ~26%. To improve performance, the following iterative steps were taken:
+1.  **Adopted Transfer Learning (ResNet-50):** The model was upgraded to a standard ResNet-50 architecture with fine-tuning of all layers and more aggressive data augmentation. This significantly improved validation accuracy to ~60%.
+2.  **Switched to ConvNeXt-Large:** To push performance further, the architecture was switched to ConvNeXt-Large.
+3.  **Advanced Training Techniques:** Several modern techniques were introduced, including `TrivialAugmentWide` for data augmentation, label smoothing, the AdamW optimizer, a cosine annealing learning rate scheduler, gradient clipping, and Automatic Mixed Precision (AMP) to manage memory.
 
-## Project Overview
+This iterative process resulted in a final validation accuracy of **~70.4%** with smaller training and validation gap.
 
-This repository contains code for training a CNN model on a dataset of images of cats, classifying them into various emotional states. The model is trained using the `torchvision` and `torch` libraries, with data augmentation applied during training. After training, the model’s performance is evaluated using a confusion matrix and various performance metrics (loss, accuracy).
+## Running the Project
 
-## Running
-
-1. Clone the repository to your local machine:
-
+1.  Clone the repository:
     ```bash
     git clone https://github.com/parsany/CatRecognition.git
-    cd cat-emotion-classifier
+    cd CatRecognition
     ```
-
-2. Ensure you have PyTorch installed with CUDA support if you plan to train the model using a GPU. You can follow the official installation guide [here](https://pytorch.org/get-started/locally/).
+2.  Install the required dependencies. It is highly recommended to use a virtual environment.
+    ```bash
+    pip install torch torchvision scikit-learn matplotlib
+    ```
+    Ensure you have a version of PyTorch that supports your available hardware (CUDA for NVIDIA GPUs).
 
 ## Dataset
 
-https://universe.roboflow.com/cats-xofvm/cat-emotions
+The model is trained on the "Cat Emotions" dataset, which is publicly available on Roboflow.
+[Link to Dataset](https://universe.roboflow.com/cats-xofvm/cat-emotions)
 
+## Final Model & Training
 
-## Training
+The best-performing model uses the following configuration:
 
-The model is trained using the following hyperparameters:
-
-- **Epochs**: 37
-- **Learning Rate**: 0.001
-- **Batch Size**: 32
-- **Dropout Rate**: 0.5
-
-The optimizer used is Adam, and the loss function is Cross-Entropy Loss.
+-   **Model**: `convnext_large` pretrained on ImageNet.
+-   **Data Augmentation**: `TrivialAugmentWide` for robust training.
+-   **Optimizer**: AdamW with a learning rate of `1e-5` and weight decay of `1e-4`.
+-   **Scheduler**: Cosine Annealing learning rate scheduler.
+-   **Loss Function**: Cross-Entropy Loss with Label Smoothing (smoothing factor of 0.1).
+-   **Training Features**:
+    -   **Automatic Mixed Precision (AMP)**: To reduce memory footprint and speed up training.
+    -   **Gradient Clipping**: To prevent exploding gradients and stabilize training.
+-   **Hyperparameters**:
+    -   **Epochs**: 30
+    -   **Batch Size**: 8 (optimized for an ~8GB VRAM GPU)
+    -   **Dropout Rate**: 0.5
 
 ## Evaluation
 
-![plot image](./assets/cmatrix.png)
+![Confusion Matrix](./assets/cmatrix.png)
 
-The model's performance is evaluated on the validation dataset, and metrics such as loss and accuracy are reported. Additionally, confusion matrices are used to visually represent the classification performance.
+The model is evaluated based on its validation accuracy and loss throughout training. The final confusion matrix is generated from the best-saved model checkpoint (`best_convnext_model.pth`) to provide a clear view of its classification performance across the different cat emotions. The final model achieved a validation accuracy of **70.41%**.
