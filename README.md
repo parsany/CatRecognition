@@ -54,3 +54,6 @@ The best-performing model uses the following configuration:
 ![Confusion Matrix](./assets/cmatrix.png)
 
 The model is evaluated based on its validation accuracy and loss throughout training. The final confusion matrix is generated from the best-saved model checkpoint (`best_convnext_model.pth`) to provide a clear view of its classification performance across the different cat emotions. The final model achieved a validation accuracy of **70.41%**.
+
+## Update:
+tested on the [dog emotion](https://www.kaggle.com/datasets/danielshanbalico/dog-emotion) generally and got **85%%**.
